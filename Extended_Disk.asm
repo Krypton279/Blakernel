@@ -74,11 +74,15 @@ StartProtectedMode:
 	mov [0xb8016], byte ' '
 	call DetectCPUID
 	call DetectLongMode
-	
 	call SetupPaging
-	jmp $
+	%include "new_code.asm"
+	db 0xea
+	dd NewCode
+	dw codeseg 
 
 ;Paging
+
+[bits 32]
 
 SetupPaging:
 	mov edi, PageTableEntry
