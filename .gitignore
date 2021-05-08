@@ -1,3 +1,5 @@
 bootloader.bin
 bootloader.flp
 Extended_Disk.bin
+custom-gcc
+custom-ld
