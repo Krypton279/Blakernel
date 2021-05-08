@@ -12,6 +12,8 @@ jmp $
 
 ;Prologue
 
+PageTableEntry equ 0x1000
+
 ExtendedSpaceSuccessString:
 	db 'Entering Extended Space , Finally Out of 512 bytes :D',0xA,0xD,0
 
@@ -70,7 +72,76 @@ StartProtectedMode:
 	mov [0xb8012], byte ' '
 	mov [0xb8014], byte ' '
 	mov [0xb8016], byte ' '
+	call DetectCPUID
+	call DetectLongMode
+	
+	call SetupPaging
 	jmp $
+
+;Paging
+
+SetupPaging:
+	mov edi, PageTableEntry
+	mov cr3, edi
+	mov dword [edi], 0x2003
+	add edi, 0x1000
+	mov dword [edi], 0x3003
+	add edi, 0x1000
+	mov dword [edi], 0x4003
+	add edi, 0x1000
+
+	mov ebx, 0x00000003
+	mov ecx, 512
+
+	.Entries:
+		mov dword [edi], ebx
+		add ebx, 0x1000
+		add edi, 8
+		loop .Entries
+
+	mov eax, cr4
+	or eax, 1 << 5
+	mov cr4, eax
+
+	mov ecx, 0xC0000080
+	rdmsr
+	or eax, 1 << 8
+	wrmsr
+
+	mov eax, cr0
+	or eax, 1 << 31
+	mov cr0, eax
+	call EditGDT
+	ret 
+
+DetectCPUID:
+	pushfd
+	pop eax
+	mov ecx, eax
+	xor eax, 1 << 21
+	push eax
+	popfd
+	pushfd
+	pop eax
+	push ecx
+	popfd
+	xor eax,ecx
+	jz NoCPUID
+	ret
+
+NoCPUID:
+	hlt ;No_CPUID_Support
+
+DetectLongMode:
+	mov eax, 0x80000001
+	cpuid
+	test edx, 1 << 29
+	jz NoLongMode
+	ret
+
+NoLongMode:
+	hlt ;No_Long_Mode_Support
+
 
 ;GDT_VARIABLES
 
@@ -96,9 +167,18 @@ gdt_end:
 gdt_descriptor:
 	gdt_size:
 		dw gdt_end - gdt_nulldesc - 1
-		dd gdt_nulldesc
+		dq gdt_nulldesc
 
 codeseg equ gdt_codedesc - gdt_nulldesc
 dataseg equ gdt_datadesc - gdt_nulldesc
+
+[bits 32]
+
+EditGDT:
+	mov [gdt_codedesc + 6], byte 10101111b
+	mov [gdt_datadesc + 6], byte 10101111b
+	ret
+
+[bits 16]
 
 times 2048-($-$$) db 0
