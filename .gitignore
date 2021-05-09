@@ -1,7 +1,3 @@
-bootloader.bin
-bootloader.flp
-Extended_Disk.o
-kernel.bin
-Kernel.o
-kernel.tmp
-compile
+boot.bin
+boot.flp
+sector2.bin
