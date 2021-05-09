@@ -1,4 +1,3 @@
-[org 0x7e00]
 
 ;Main_Control_Line
 
@@ -20,6 +19,8 @@ ExtendedSpaceSuccessString:
 EnterProtectedModeString:
 	db 'Entering Protected Mode , finally in 32-bit :D',0xA,0xD,0
 
+[bits 16]
+
 PrintString:
 	mov ah, 0x0e
 	.Loop:
@@ -30,7 +31,7 @@ PrintString:
 		inc bx
 		jmp .Loop
 	.Exit:
-	ret
+	rets
 
 EnterProtectedMode:
 	mov bx, EnterProtectedModeString
