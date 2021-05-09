@@ -1,5 +1,6 @@
+
 [bits 64]
-[extern _start]
+
 
 NewCode:
 	mov [0xb8000], byte 'L'
@@ -14,5 +15,4 @@ NewCode:
 	mov [0xb8012], byte ' '
 	mov [0xb8014], byte ' '
 	mov [0xb8016], byte ' '
-	call _start
 	jmp $

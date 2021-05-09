@@ -1,11 +1,8 @@
 [org 0x7c00]
 
-;Disk_Read_Stuff
-
 PROGRAM_SPACE equ 0x7e00
-mov [BOOT_DISK] , dl
 
-;Main_Routine
+mov [BOOT_DISK], dl
 
 mov bp, 0x7c00
 mov sp, bp
@@ -13,17 +10,14 @@ mov sp, bp
 mov bx, BootString
 call PrintString
 
+call ReadDisk
 
-;Disk_Read
-mov bx, DiskReadString
-call PrintString
-
-jmp ReadDisk
-
-
-;Prologue-Extra_Routines_and_Variables
+jmp PROGRAM_SPACE
 
 PrintString:
+	push ax
+	push bx
+
 	mov ah, 0x0e
 	.Loop:
 	cmp [bx], byte 0
@@ -33,7 +27,9 @@ PrintString:
 		inc bx
 		jmp .Loop
 	.Exit:
-		ret
+	pop ax
+	pop bx
+	ret
 
 ReadDisk:
 	mov ah, 0x02
@@ -45,31 +41,10 @@ ReadDisk:
 	mov cl, 0x02
 
 	int 0x13
-
-	jc DiskReadFailed
-	mov bx, DiskReadSuccessString
-	call PrintString
-
-	jmp 0x7e00
-	
-
-DiskReadFailed:
-	mov bx, DiskReadErrorString
-	call PrintString
-	jmp $
-
+	ret
 
 BootString:
-	db 'BootLoader Has Been Started , Fun Begins :D',0xA,0xD,0
-
-DiskReadString:
-	db 'Reading Disk Space Now ...',0xA,0xD,0
-
-DiskReadErrorString:
-	db 'Disk Read Failed ...',0xA,0xD,0
-
-DiskReadSuccessString:
-	db 'Disk Read Success',0xA,0xD,0
+	db 'Bootloader has been started',0xA,0xD,0
 
 BOOT_DISK:
 	db 0

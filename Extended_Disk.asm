@@ -1,28 +1,18 @@
+[org 0x7e00]
 
-
-;Main_Control_Line
-
-mov bx, ExtendedSpaceSuccessString
+mov bx, ExtendedMessage
 call PrintString
 
 call EnterProtectedMode
 
 jmp $
 
-
-;Prologue
-
-PageTableEntry equ 0x1000
-
-ExtendedSpaceSuccessString:
-	db 'Entering Extended Space , Finally Out of 512 bytes :D',0xA,0xD,0
-
-EnterProtectedModeString:
-	db 'Entering Protected Mode , finally in 32-bit :D',0xA,0xD,0
-
 [bits 16]
 
 PrintString:
+	push ax
+	push bx
+
 	mov ah, 0x0e
 	.Loop:
 	cmp [bx], byte 0
@@ -32,6 +22,8 @@ PrintString:
 		inc bx
 		jmp .Loop
 	.Exit:
+	pop ax
+	pop bx
 	ret
 
 EnterProtectedMode:
@@ -50,6 +42,17 @@ EnableA20:
 	or al, 2
 	out 0x92, al
 	ret
+
+ExtendedMessage:
+	db 'Now Entering Extended Memory',0xA,0xD,0
+
+ExtendedSpaceSuccessString:
+	db 'Entering Extended Space , Finally Out of 512 bytes :D',0xA,0xD,0
+
+EnterProtectedModeString:
+	db 'Entering Protected Mode , finally in 32-bit :D',0xA,0xD,0
+
+PageTableEntry equ 0x1000
 
 [bits 32]
 
@@ -82,7 +85,7 @@ StartProtectedMode:
 	dd NewCode
 	dw codeseg 
 
-;Paging
+;64
 
 [bits 32]
 
