@@ -4,3 +4,4 @@ Extended_Disk.o
 kernel.bin
 Kernel.o
 kernel.tmp
+compile
