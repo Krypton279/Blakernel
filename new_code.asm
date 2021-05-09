@@ -15,4 +15,5 @@ NewCode:
 	mov [0xb8012], byte ' '
 	mov [0xb8014], byte ' '
 	mov [0xb8016], byte ' '
+
 	jmp $

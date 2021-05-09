@@ -1,4 +1,4 @@
-[org 0x7e00]
+
 
 mov bx, ExtendedMessage
 call PrintString
