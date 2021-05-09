@@ -1,4 +1,5 @@
 
+
 ;Main_Control_Line
 
 mov bx, ExtendedSpaceSuccessString
@@ -31,7 +32,7 @@ PrintString:
 		inc bx
 		jmp .Loop
 	.Exit:
-	rets
+	ret
 
 EnterProtectedMode:
 	mov bx, EnterProtectedModeString

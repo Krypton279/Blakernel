@@ -18,13 +18,8 @@ call PrintString
 mov bx, DiskReadString
 call PrintString
 
-call ReadDisk
+jmp ReadDisk
 
-jmp PROGRAM_SPACE
-
-
-
-jmp $
 
 ;Prologue-Extra_Routines_and_Variables
 
@@ -38,7 +33,7 @@ PrintString:
 		inc bx
 		jmp .Loop
 	.Exit:
-	ret
+		ret
 
 ReadDisk:
 	mov ah, 0x02
@@ -55,7 +50,8 @@ ReadDisk:
 	mov bx, DiskReadSuccessString
 	call PrintString
 
-	ret
+	jmp 0x7e00
+	
 
 DiskReadFailed:
 	mov bx, DiskReadErrorString
