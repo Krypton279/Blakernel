@@ -1,53 +1,74 @@
 [org 0x7c00]
 
-mov bx, BootString
-call PrintString
-call ReadSectors
+mov sp, 0x7c00
+
+push dx
+
+mov si, BootString
+call BiosPrint
+
+pop dx
+
+mov ecx, 1  ; LBA
+mov ax, 3   ; amount
+mov ebx, 0x7e00
+call ReadSectorsLBA
+jc ReadSectorError
 
 jmp 0x7e00
 
 BootString:
 	db 'Bootloader Has been Started.',0xA,0xD,0
 
-BootDisk:
-	db 0
+;************************;
+; Parameters:            ;
+;   si => string pointer ;
+;************************;
+BiosPrint:
+    pusha
+    .loop:
+        lodsb
+        or al, al
+        jz .done
+        mov ah, 0x0E
+        int 0x10
+        jmp .loop
+    .done:
+    popa
+    ret
 
+;***********************************;
+; Reads a series of sectors         ;
+; Parameters:                       ;
+;   dl => bootdrive                 ;
+;   ax => sectors count             ;
+;   ebx => address to load to       ;
+;   ecx => LBA address              ;
+; Returns:                          ;
+;   cf => set if error              ;
+;***********************************;
+ReadSectorsLBA:
+    push ebx
+    mov word [LBA_Packet.block_cout], ax
+    mov dword [LBA_Packet.transfer_buffer], ebx
+    mov dword [LBA_Packet.lba_value], ecx
+    mov si, LBA_Packet
+    mov ah, 0x42    ; Read sectors function
+    int 0x13
+    pop ebx
+    ret
 
-PrintString:
-	push ax
-	push bx
-
-	mov ah, 0x0e
-	.Loop:
-	cmp [bx], byte 0
-	je .Exit
-		mov al, [bx]
-		int 0x10
-		inc bx
-		jmp .Loop
-	.Exit:
-
-	pop ax
-	pop bx
-	ret
-
-ReadSectors:
-	mov ah, 0x02
-	mov al, 32
-	mov ch, 0x00
-	mov cl, 0x02
-	mov dh, 0x00
-	mov dl, [BootDisk]
-	mov bx, 0x7e00
-
-	int 0x13
-
-	jc ReadSectorError
-	ret
+align 4
+LBA_Packet:
+    .packet_size     db 0x10 ; use_transfer_64 ? 10h : 18h
+    .reserved        db 0x00 ; always zero
+    .block_cout      dw 0x32 ; number of sectors to read
+    .transfer_buffer dd 0x00 ; address to load in ram
+    .lba_value       dq 0x00 ; LBA addres value   
 
 ReadSectorError:
-	mov bx, ReadError
-	call PrintString
+	mov si, ReadError
+	call BiosPrint
 	jmp $
 
 ReadError:

@@ -1,3 +1,6 @@
 boot.bin
 boot.flp
-sector2.bin
+sector2.o
+ld_script
+kernel.o
+kernel.bin

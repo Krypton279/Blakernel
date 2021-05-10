@@ -213,7 +213,7 @@ Enter64:
 	mov [0xb802a], byte ' '
 	mov [0xb802c], byte '.'
 	mov rax, 1
-	call _start
+	jmp _start
 	
 	jmp $
 
@@ -229,4 +229,4 @@ ActivateSSE:
 
 	ret
 
-times 16384-($-$$) db 0
+times (512*2)-($-$$) db 0
