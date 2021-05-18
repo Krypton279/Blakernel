@@ -229,4 +229,6 @@ ActivateSSE:
 
 	ret
 
+;EXCEPTION HANDLERS
+
 times (512*2)-($-$$) db 0
