@@ -1,5 +1,7 @@
 #include "types.h"
 
+extern void StartIDT();
+
 struct idtr {
     uint_16 limit;
     struct IDTEntry* base;
@@ -203,5 +205,7 @@ void InitializeIDT(){
 	//IDTinfo
 	IDTinfo.limit = sizeof(struct IDTEntry) * 20;
 	IDTinfo.base = &IDTEntries[0];
+	//Init IDT
+	StartIDT();
 	return;
 }

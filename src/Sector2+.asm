@@ -270,61 +270,89 @@ isr1:
 	mov [0xb802c], byte '.'
 	iretq
 isr2:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr3:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr4:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr5:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr6:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr7:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr8:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr9:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr10:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr11:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr12:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr13:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr14:
+	mov [0xb8000], byte 'Z'
 	hlt
+	iretq
 isr15:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr16:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr17:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr18:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr19:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 isr20:
+	mov [0xb8000], byte 'Z'
 	hlt
 	iretq
 
+global StartIDT
+[extern IDTEntries]
+
+StartIDT:
+	mov rax, IDTEntries
+	lidt [rax]
+	sti
+	ret
 
 times (512*2)-($-$$) db 0
