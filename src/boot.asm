@@ -11,7 +11,7 @@ pop dx
 
 mov ecx, 1  ; LBA
 ;CHANGE_THIS_WHEN_NEWER_CODE_IS_ADDED
-mov ax, 6   ; amount
+mov ax, 7   ; amount
 mov ebx, 0x7e00
 call ReadSectorsLBA
 jc ReadSectorError

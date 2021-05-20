@@ -1,4 +1,5 @@
 #pragma once
+#include "cursor.h"
 
 int xyToVideoAddresses(int x,int y,char character) {
 	char *VIDMEM = (char *)0xb8000;
@@ -8,7 +9,8 @@ int xyToVideoAddresses(int x,int y,char character) {
 }
 
 int PrintStringXY(char *array,int array_size,int x,int y) {
-	for (int i = 0;i < array_size;i++){
+	int i;
+	for (i = 0;i < array_size;i++){
 			xyToVideoAddresses(x+i,y,array[i]);
 	}
 	return 0;
