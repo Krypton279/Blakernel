@@ -346,13 +346,4 @@ isr20:
 	hlt
 	iretq
 
-global StartIDT
-[extern IDTEntries]
-
-StartIDT:
-	mov rax, IDTEntries
-	lidt [rax]
-	sti
-	ret
-
 times (512*2)-($-$$) db 0
