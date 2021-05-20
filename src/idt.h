@@ -15,7 +15,7 @@ struct IDTEntry {
    uint_32 zero;
 } __attribute__ ((packed));
 
-struct IDTEntry IDTEntries[19];
+struct IDTEntry IDTEntries[20];
 struct idtr IDTinfo;
 
 extern void isr1();
