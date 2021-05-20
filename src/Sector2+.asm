@@ -231,4 +231,79 @@ ActivateSSE:
 
 ;EXCEPTION HANDLERS
 
+isr1:
+	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte 'E'
+	mov [0xb8004], byte 'R'
+	mov [0xb8006], byte 'O'
+	mov [0xb8008], byte '-'
+	mov [0xb800a], byte 'E'
+	mov [0xb800c], byte 'R'
+	mov [0xb800e], byte 'R'
+	mov [0xb8010], byte 'O'
+	mov [0xb8012], byte 'R'
+	mov [0xb8014], byte '!'
+	mov [0xb8016], byte '!'
+	mov [0xb8018], byte '!'
+	mov [0xb802a], byte '!'
+	mov [0xb802c], byte '.'
+	iretq
+isr2:
+	hlt
+	iretq
+isr3:
+	hlt
+	iretq
+isr4:
+	hlt
+	iretq
+isr5:
+	hlt
+	iretq
+isr6:
+	hlt
+	iretq
+isr7:
+	hlt
+	iretq
+isr8:
+	hlt
+	iretq
+isr9:
+	hlt
+	iretq
+isr10:
+	hlt
+	iretq
+isr11:
+	hlt
+	iretq
+isr12:
+	hlt
+	iretq
+isr13:
+	hlt
+	iretq
+isr14:
+	hlt
+isr15:
+	hlt
+	iretq
+isr16:
+	hlt
+	iretq
+isr17:
+	hlt
+	iretq
+isr18:
+	hlt
+	iretq
+isr19:
+	hlt
+	iretq
+isr20:
+	hlt
+	iretq
+
+
 times (512*2)-($-$$) db 0

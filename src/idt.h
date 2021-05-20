@@ -2,7 +2,7 @@
 
 struct idtr {
     uint_16 limit;
-    uint_32 base;
+    struct IDTEntry * base;
 } __attribute__ ((packed));
 
 struct IDTEntry {
@@ -202,5 +202,5 @@ void InitializeIDT(){
 	IDTEntries[19].zero = 0;
 	//IDTinfo
 	IDTinfo.limit = sizeof(struct IDTEntry) * 20;
-	IDTinfo.base = &IDTEntries[1];
+	IDTinfo.base = &IDTEntries[0];
 }
