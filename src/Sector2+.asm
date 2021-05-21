@@ -214,7 +214,6 @@ Enter64:
 	mov [0xb802c], byte '.'
 	mov rax, 1
 	jmp _start
-	
 	jmp $
 
 ActivateSSE:

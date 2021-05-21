@@ -1,5 +1,5 @@
 #pragma once
-#include "outb_inb.h"
+#include "outb_inb.c"
 
 void disable_cursor()
 {

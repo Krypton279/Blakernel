@@ -1,7 +1,7 @@
-#include "print.h"
-#include "idt.h"
-#include "outb_inb.h"
-#include "cursor.h"
+#include "print.c"
+#include "idt.c"
+#include "outb_inb.c"
+#include "cursor.c"
 
 extern void StartIDT();
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "cursor.h"
+#include "cursor.c"
 
 int xyToVideoAddresses(int x,int y,char character) {
 	char *VIDMEM = (char *)0xb8000;
