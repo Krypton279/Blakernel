@@ -3,7 +3,7 @@
 #include "print.c"
 
 void keyboard_isr() {
-	xyToVideoAddresses(0,15,'X');
+	PrintStringXY("XV",2,0,14);
 	outb(PIC2_COMMAND,PIC_EOI);
 	outb(PIC1_COMMAND,PIC_EOI);
 	return;

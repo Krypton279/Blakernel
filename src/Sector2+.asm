@@ -295,7 +295,7 @@ isr1:
 isr2:
 	mov [0xb8000], byte '2'
 	mov [0xb8002], byte ' '
-	jmp $
+	jmp $ 
 	iretq
 isr3:
 	mov [0xb8000], byte '3'
@@ -360,6 +360,7 @@ isr14:
 	mov [0xb8000], byte '1'
 	mov [0xb8002], byte '4'
 	mov [0xb8004], byte ' '
+	pop rax
 	jmp $
 	iretq
 isr15:
@@ -399,9 +400,6 @@ isr20:
 	jmp $
 	iretq
 keyboard_handler:
-	mov [0xb8000], byte '2'
-	mov [0xb8002], byte '0'
-	mov [0xb8004], byte ' '
 	PUSHALL
 	call keyboard_isr
 	POPALL
