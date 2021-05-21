@@ -165,18 +165,30 @@ void InitializeIDT(){
 	IDTEntries[19].offset_3 = (uint_32) (((uint_64) isr20) >> 32);
 	IDTEntries[19].zero = 0;
 	//Keyboard IRQ
-	IDTEntries[32].offset_1 = (uint_16) ((uint_64) keyboard_handler);
-	IDTEntries[32].selector = 8;
-	IDTEntries[32].ist = 0;
-	IDTEntries[32].type_attr = 142;
-	IDTEntries[32].offset_2 = (uint_16) (((uint_64) keyboard_handler) >> 16);
-	IDTEntries[32].offset_3 = (uint_32) (((uint_64) keyboard_handler) >> 32);
+	IDTEntries[33].offset_1 = (uint_16) ((uint_64) keyboard_handler);
+	IDTEntries[33].selector = 8;
+	IDTEntries[33].ist = 0;
+	IDTEntries[33].type_attr = 142;
+	IDTEntries[33].offset_2 = (uint_16) (((uint_64) keyboard_handler) >> 16);
+	IDTEntries[33].offset_3 = (uint_32) (((uint_64) keyboard_handler) >> 32);
 	//IDTinfo
 	IDTinfo.limit = sizeof(struct IDTEntry) * 20;
 	IDTinfo.base = &IDTEntries[0];
 	//Init IDT
-	asm volatile("lidtq (%0)" :: "r"(&IDTinfo) : "memory");
+	unsigned char a1, a2;
+	a1 = inb(PIC1_DATA);                        // save masks
+	a2 = inb(PIC2_DATA);
+	outb(PIC1_COMMAND, ICW1_INIT | ICW1_ICW4);  // starts the initialization sequence (in cascade mode)
+	outb(PIC2_COMMAND, ICW1_INIT | ICW1_ICW4);
+	outb(PIC1_DATA, 4);                       // ICW3: tell Master PIC that there is a slave PIC at IRQ2 (0000 0100)
+	outb(PIC2_DATA, 2);                       // ICW3: tell Slave PIC its cascade identity (0000 0010)
+	outb(PIC1_DATA, ICW4_8086);
+	outb(PIC2_DATA, ICW4_8086);
+	outb(PIC1_DATA, a1);   // restore saved masks.
+	outb(PIC2_DATA, a2);
 	outb(0x21,0xfd);
 	outb(0xa1,0xff);
+	asm volatile("lidtq (%0)" :: "r"(&IDTinfo) : "memory");
+	asm("sti");
 	return;
 }
