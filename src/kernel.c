@@ -2,6 +2,7 @@
 #include "idt.c"
 #include "outb_inb.c"
 #include "cursor.c"
+#include "keyboard.c"
 
 extern void StartIDT();
 

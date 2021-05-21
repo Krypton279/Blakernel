@@ -16,7 +16,7 @@ struct IDTEntry {
    uint_32 zero;
 } __attribute__ ((packed));
 
-struct IDTEntry IDTEntries[20];
+struct IDTEntry IDTEntries[256];
 struct idtr IDTinfo;
 
 extern void isr1();
@@ -39,3 +39,4 @@ extern void isr17();
 extern void isr18();
 extern void isr19();
 extern void isr20();
+extern void keyboard_handler();

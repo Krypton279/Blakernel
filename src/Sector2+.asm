@@ -194,6 +194,26 @@ StartLongMode:
 [bits 64]
 [extern _start]
 
+%macro PUSHALL 0
+	push rax
+	push rcx
+	push rdx
+	push r8
+	push r9
+	push r10
+	push r11
+%endmacro
+
+%macro POPALL 0
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop rdx
+	pop rcx
+	pop rax
+%endmacro
+
 Enter64:
 
 	call ActivateSSE
@@ -230,6 +250,8 @@ ActivateSSE:
 
 ;EXCEPTION HANDLERS
 
+[extern keyboard_isr]
+
 global isr1
 global isr2
 global isr3
@@ -250,6 +272,7 @@ global isr17
 global isr18
 global isr19
 global isr20
+global keyboard_handler
 
 isr1:
 	mov [0xb8000], byte 'Z'
@@ -343,6 +366,11 @@ isr19:
 isr20:
 	mov [0xb8000], byte 'Z'
 	hlt
+	iretq
+keyboard_handler:
+	PUSHALL
+	call keyboard_isr
+	POPALL
 	iretq
 
 times (512*2)-($-$$) db 0

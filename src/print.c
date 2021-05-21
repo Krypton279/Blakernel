@@ -1,6 +1,7 @@
 #pragma once
 #include "cursor.c"
 
+
 int xyToVideoAddresses(int x,int y,char character) {
 	char *VIDMEM = (char *)0xb8000;
 	VIDMEM[(160 * y) + (x * 2)] = character;
@@ -16,3 +17,4 @@ int PrintStringXY(char *array,int array_size,int x,int y) {
 	}
 	return 0;
 }
+
