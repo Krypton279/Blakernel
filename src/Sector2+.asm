@@ -274,9 +274,9 @@ global isr19
 global isr20
 global keyboard_handler
 
-isr1:
+isr1: 
 	mov [0xb8000], byte 'Z'
-	mov [0xb8000], byte 'E'
+	mov [0xb8002], byte 'E'
 	mov [0xb8004], byte 'R'
 	mov [0xb8006], byte 'O'
 	mov [0xb8008], byte '-'
@@ -285,86 +285,118 @@ isr1:
 	mov [0xb800e], byte 'R'
 	mov [0xb8010], byte 'O'
 	mov [0xb8012], byte 'R'
-	mov [0xb8014], byte '!'
-	mov [0xb8016], byte '!'
+	mov [0xb8014], byte '-'
+	mov [0xb8016], byte '1'
 	mov [0xb8018], byte '!'
 	mov [0xb802a], byte '!'
 	mov [0xb802c], byte '.'
+	hlt
 	iretq
 isr2:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '2'
+	mov [0xb8002], byte ' '
 	hlt
 	iretq
 isr3:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '3'
+	mov [0xb8002], byte ' '
 	hlt
 	iretq
 isr4:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '4'
+	mov [0xb8002], byte ' '
+
 	hlt
 	iretq
 isr5:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '5'
+	mov [0xb8002], byte ' '
 	hlt
 	iretq
 isr6:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '6'
+	mov [0xb8002], byte ' '
 	hlt
 	iretq
 isr7:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '7'
+	mov [0xb8002], byte ' '
 	hlt
 	iretq
 isr8:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '8'
+	mov [0xb8002], byte ' '
 	hlt
 	iretq
 isr9:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '9'
+	mov [0xb8002], byte ' '
 	hlt
 	iretq
 isr10:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '0'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr11:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '1'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr12:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '2'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr13:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '3'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr14:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '4'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr15:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '5'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr16:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '6'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr17:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '7'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr18:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '8'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr19:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '9'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 isr20:
-	mov [0xb8000], byte 'Z'
+	mov [0xb8000], byte '2'
+	mov [0xb8002], byte '0'
+	mov [0xb8004], byte ' '
 	hlt
 	iretq
 keyboard_handler:
@@ -373,4 +405,4 @@ keyboard_handler:
 	POPALL
 	iretq
 
-times (512*2)-($-$$) db 0
+times (1024*2)-($-$$) db 0
