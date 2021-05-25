@@ -105,7 +105,9 @@ void CheckAndPrintScanCodes(int ScanCode) {
 			return;
 			break;
 		case KEY_PRESSED_BACKSPACE:
-			xyToVideoAddresses(X,Y,' ');
+			xyToVideoAddresses(X-1,Y,' ');
+			update_cursor(X-1,Y);
+			X = X - 1;
 			return;
 			break;
 		case KEY_PRESSED_Q:
