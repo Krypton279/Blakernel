@@ -13,6 +13,7 @@ int _start()
     PrintStringXY(String,20,0,10);
     InitializeIDT();
     PrintStringXY("IDT Loaded",10,0,11);
+    PrintStringXY("KeyBoard Input Enabled :",24,0,12);
     //Enabled Cursor and Remember Text Mode Stays in 80x25
     while(1);
 }

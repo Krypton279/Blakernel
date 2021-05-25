@@ -20,8 +20,6 @@ void enable_cursor(uint_8 cursor_start, uint_8 cursor_end)
 
 void update_cursor(int x, int y)
 {
-	y = y - 1;
-	x = x - 1;
 	uint_16 pos = y * 80 + x;
  
 	outb(0x3D4, 0x0F);
