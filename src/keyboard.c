@@ -414,6 +414,10 @@ void CheckAndPrintScanCodes(int ScanCode) {
 			update_cursor(0,Y+1);
 			Y = Y + 1;
 			X = 0;
+		case KEY_PRESSED_SPACE:
+			xyToVideoAddresses(X,Y,' ');
+			return;
+			break;
 	}
 }
 
