@@ -36,7 +36,33 @@ PrintString:
 	pop bx
 	ret
 
+global MemRegCounts
+
+MemRegCounts:
+	db 0
+
+DetectMemoryRegions:
+	mov ax, 0
+	mov es, ax
+	mov di, 0x500
+	mov edx, 0x534d4150
+	mov ebx, 0
+
+	.loop:
+		mov eax, 0xE820
+		mov ecx, 24
+		int 0x15
+		cmp ebx, 0
+		je .fin
+		add di, 24
+		inc byte [MemRegCounts]
+		jmp .loop
+
+	.fin:
+		ret
+
 StartProtectedMode:
+	call DetectMemoryRegions
 	cli
 	call EnableA20
 	lgdt [gdt_descriptor]

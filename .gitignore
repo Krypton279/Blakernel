@@ -3,3 +3,4 @@ src/boot.flp
 src/sector2.o
 src/kernel.o
 src/kernel.bin
+src/Memory.png
