@@ -17,9 +17,8 @@ struct HeapAddress {
 int ValidMemoryIndex[10];
 struct MemoryRegionEntry* MemRegs = (struct MemoryRegionEntry *) 0x500;
 struct MemoryRegionEntry heapMemory;
-uint_64 HeapLengthKB = 510;
-uint_64 DividedHeapAddresses[HeapLengthKB];
-struct HeapAddress HeapAddresses[HeapLengthKB]; 
+uint_64 DividedHeapAddresses[510];
+struct HeapAddress HeapAddresses[510]; 
 
 void ValidMemRegs() { 
 	int j = 0;
@@ -37,17 +36,20 @@ void ValidMemRegs() {
 }
 
 void DivideMemSectors(){
-	uint_64 OffsetFromFirstDivision[(heapMemory.Length)/1024];
+	uint_64 OffsetFromFirstDivision[510];
 	uint_64 LastAddress = (heapMemory.Address + heapMemory.Length) - (heapMemory.Length/1024);
 	uint_64 Length = heapMemory.Length;
-	uint_64 Address = heapMemory.Address;
-	for(int i = 0;i < (heapMemory.Length/1024);i++){
+	uint_64 Address = heapMemory.Address; 
+	for(int i = 0;i < 522240;i++){
 		OffsetFromFirstDivision[i] = i;
-	}
-	for(int j = 0;j < (heapMemory.Length/1024);j++){
-		HeapAddresses[j].Address = heapMemory.Address + OffsetFromFirstDivision[j];
+		PrintStringXY(IntegerToString(i),8,0,16);
+	} 
+	for(int j = 0;j < 510;j++){
+		HeapAddresses[j].Address = heapMemory.Address + (OffsetFromFirstDivision[j]);
 		HeapAddresses[j].isFree = 0;
-	}
+		PrintStringXY(IntegerToString(HeapAddresses[j].Address),8,0,16);
+	} 
+	return;
 }
 
 void malloc(uint_64 size){
