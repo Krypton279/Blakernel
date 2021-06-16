@@ -1,5 +1,6 @@
 #pragma once
 #include "types.h"
+#include "print.c"
 extern uint_8 MemRegCounts;
 
 struct MemoryRegionEntry {
@@ -17,8 +18,7 @@ struct HeapAddress {
 int ValidMemoryIndex[10];
 struct MemoryRegionEntry* MemRegs = (struct MemoryRegionEntry *) 0x500;
 struct MemoryRegionEntry heapMemory;
-uint_64 DividedHeapAddresses[510];
-struct HeapAddress HeapAddresses[510]; 
+struct HeapAddress *HeapAddresses = (struct HeapAddress*)0x100000;
 
 void ValidMemRegs() { 
 	int j = 0;
@@ -36,19 +36,11 @@ void ValidMemRegs() {
 }
 
 void DivideMemSectors(){
-	uint_64 OffsetFromFirstDivision[510];
-	uint_64 LastAddress = (heapMemory.Address + heapMemory.Length) - (heapMemory.Length/1024);
-	uint_64 Length = heapMemory.Length;
-	uint_64 Address = heapMemory.Address; 
-	for(int i = 0;i < 522240;i++){
-		OffsetFromFirstDivision[i] = i;
-		PrintStringXY(IntegerToString(i),8,0,16);
-	} 
-	for(int j = 0;j < 510;j++){
-		HeapAddresses[j].Address = heapMemory.Address + (OffsetFromFirstDivision[j]);
-		HeapAddresses[j].isFree = 0;
-		PrintStringXY(IntegerToString(HeapAddresses[j].Address),8,0,16);
-	} 
+	int k;
+	for(int k = 0;k <= 522240;k++){
+		PrintStringXY(IntegerToString(k),8,0,16);
+		//HeapAddresses[k].isFree = 0;
+	}
 	return;
 }
 
