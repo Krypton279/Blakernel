@@ -16,7 +16,8 @@ nasm -f elf64 Sector2+.asm -o sector2.o
 
 /usr/local/x86_64elfgcc/bin/x86_64-elf-ld -nostdlib -T ld_script sector2.o kernel.o -o kernel.bin
 
-cat boot.bin kernel.bin > boot.flp```
+cat boot.bin kernel.bin > boot.flp
+```
 
 # Windows
 NOTE : in Windows , its mandotory to get wsl setup and running to run custom gcc binaries , you have to put the binaries in specific locations , so the binaries for linux and wsl are the same , you just need to put the binaries in the "CORRECT" path for it to work , as always , /src/compilewindows.bat will be there but i am still posting the commands here:
@@ -31,12 +32,14 @@ wsl /usr/local/x86_64elfgcc/bin/x86_64-elf-ld -nostdlib -T ld_script sector2.o k
 
 copy /b boot.bin+kernel.bin boot.flp
 
-pause```
+pause
+```
 
 # Running the Kernel with Qemu
 NOTE : You need to run either src/launchqemulinux or src/launchqemuwindowsbat to run QEMU with the kernel , well , truth to be said , both commands are the same but you need to make sure that QEMU is in your path , either in Windows or Linux , you can always google how include paths in your OS , meanwhile i am also writing the command for QEMU here aswell:
 
-```qemu-system-x86_64 -m 512M boot.flp -no-reboot -no-shutdown```
+```qemu-system-x86_64 -m 512M boot.flp -no-reboot -no-shutdown
+```
 
 # ScreenShots of BlaKernel
 NOTE : They are coming soon , :)
