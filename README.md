@@ -38,7 +38,8 @@ pause
 # Running the Kernel with Qemu
 NOTE : You need to run either src/launchqemulinux or src/launchqemuwindowsbat to run QEMU with the kernel , well , truth to be said , both commands are the same but you need to make sure that QEMU is in your path , either in Windows or Linux , you can always google how include paths in your OS , meanwhile i am also writing the command for QEMU here aswell:
 
-```qemu-system-x86_64 -m 512M boot.flp -no-reboot -no-shutdown
+```
+qemu-system-x86_64 -m 512M boot.flp -no-reboot -no-shutdown
 ```
 
 # ScreenShots of BlaKernel
