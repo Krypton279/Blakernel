@@ -7,10 +7,15 @@ There are 2 ways you can compile this kernel : Windows and Linux
 # Linux
 NOTE : in Linux , you have to get gcc(x86_64_elfgcc and x86_64_elf_ld) compiled , and i am on Linux when i compiled that binaries , so i know what a big problem that is , so i am gonna upload the binaries in /bin which must have the binaries and you get them while cloning so you dont have to go throught what i went through :)
 The commands will be in /src/compilelinux but still i am writing them down here :
+
 nasm -f bin boot.asm -o boot.bin
+
 nasm -f elf64 Sector2+.asm -o sector2.o
+
 /usr/local/x86_64elfgcc/bin/x86_64-elf-gcc -c -ffreestanding -m64 kernel.c -o kernel.o
+
 /usr/local/x86_64elfgcc/bin/x86_64-elf-ld -nostdlib -T ld_script sector2.o kernel.o -o kernel.bin
+
 cat boot.bin kernel.bin > boot.flp
 
 # Windows
