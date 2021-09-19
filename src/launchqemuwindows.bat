@@ -1,0 +1,1 @@
+qemu-system-x86_64 -m 512M boot.flp -no-reboot -no-shutdown

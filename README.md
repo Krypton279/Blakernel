@@ -8,7 +8,8 @@ There are 2 ways you can compile this kernel : Windows and Linux
 NOTE : in Linux , you have to get gcc(x86_64_elfgcc and x86_64_elf_ld) compiled , and i am on Linux when i compiled that binaries , so i know what a big problem that is , so i am gonna upload the binaries in /bin which must have the binaries and you get them while cloning so you dont have to go throught what i went through :)
 The commands will be in /src/compilelinux but still i am writing them down here :
 
-```nasm -f bin boot.asm -o boot.bin
+```bash
+nasm -f bin boot.asm -o boot.bin
 
 nasm -f elf64 Sector2+.asm -o sector2.o
 
@@ -22,7 +23,8 @@ cat boot.bin kernel.bin > boot.flp
 # Windows
 NOTE : in Windows , its mandotory to get wsl setup and running to run custom gcc binaries , you have to put the binaries in specific locations , so the binaries for linux and wsl are the same , you just need to put the binaries in the "CORRECT" path for it to work , as always , /src/compilewindows.bat will be there but i am still posting the commands here:
 
-```nasm -f bin boot.asm -o boot.bin
+```bash
+nasm -f bin boot.asm -o boot.bin
 
 nasm -f elf64 Sector2+.asm -o sector2.o
 
@@ -38,7 +40,7 @@ pause
 # Running the Kernel with Qemu
 NOTE : You need to run either src/launchqemulinux or src/launchqemuwindowsbat to run QEMU with the kernel , well , truth to be said , both commands are the same but you need to make sure that QEMU is in your path , either in Windows or Linux , you can always google how include paths in your OS , meanwhile i am also writing the command for QEMU here aswell:
 
-```
+```bash
 qemu-system-x86_64 -m 512M boot.flp -no-reboot -no-shutdown
 ```
 
