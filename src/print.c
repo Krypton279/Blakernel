@@ -2,6 +2,7 @@
 #include "cursor.c"
 
 int X,Y;
+int isNull;
 
 int xyToVideoAddresses(int x,int y,char character) {
 	char *VIDMEM = (char *)0xb8000;
@@ -16,6 +17,9 @@ int xyToVideoAddresses(int x,int y,char character) {
 int PrintStringXY(char *array,int array_size,int x,int y) {
 	int i;
 	for (i = 0;i < array_size;i++){
+			if (array[i] == NULL){
+				return 0;
+			}
 			xyToVideoAddresses(x+i,y,array[i]);
 	}
 	return 0;
