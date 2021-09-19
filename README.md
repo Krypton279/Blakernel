@@ -35,8 +35,11 @@ I am also Searching for new names for this kernel , you can send your suggestion
 # Things to keep in Mind when Editing the source code or tinkering with it
 
 NOTE : REMEMBER TO INCREASE THE VALUE IN LINE 13 OF BOOT.ASM. 
+
 NOTE : REMEMBER TO CHECK THE TOP-LEFT CORNER OF THE EMULATOR FOR EXCEPTION NUMBERS AND CHECK THE EXCEPTION FROM OSDEV WIKI.
+
 NOTE : "Always remove the debug code after you use it"
+
 NOTE : IF YOU ARE GETTING A PAGE FAULT TRY THE FIRST NOTE SOLUTION
 
 # Discord Server
