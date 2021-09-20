@@ -77,6 +77,3 @@ char* IntegerToString(int value) {
 	integerToStringOutput[isNegative + size + 1] = 0;
 	return integerToStringOutput;
 }
-
-
-

@@ -17,8 +17,9 @@ int _start()
     PrintStringXY("KeyBoard Input Enabled",22,0,12);
     PrintStringXY("Number Of Memory Regions Present :",34,0,13);PrintStringXY(IntegerToString(MemRegCounts),1,34,13);
     ValidMemRegs();
+    InitiateMemoryMap();
     //heapMemory is the Heap in form of Struct which conains every information abt Heap
-    PrintStringXY((IntegerToString(heapMemory.Address)),50,0,14);
+    PrintStringXY((IntegerToString(heapMemory.Length)),50,0,14);
     //Enabled Cursor and Remember Text Mode Stays in 80x25
     while(1);
 }
