@@ -312,116 +312,116 @@ isr1:
 	mov [0xb8010], byte 'O'
 	mov [0xb8012], byte 'R'
 	mov [0xb8014], byte '-'
-	mov [0xb8016], byte '1'
+	mov [0xb8016], byte '0'
 	mov [0xb8018], byte '!'
 	mov [0xb802a], byte '!'
 	mov [0xb802c], byte '.'
 	jmp $
 	iretq
 isr2:
-	mov [0xb8000], byte '2'
+	mov [0xb8000], byte '1'
 	mov [0xb8002], byte ' '
 	jmp $ 
 	iretq
 isr3:
-	mov [0xb8000], byte '3'
+	mov [0xb8000], byte '2'
 	mov [0xb8002], byte ' '
 	jmp $
 	iretq
 isr4:
-	mov [0xb8000], byte '4'
+	mov [0xb8000], byte '3'
 	mov [0xb8002], byte ' '
 	jmp $
 	iretq
 isr5:
-	mov [0xb8000], byte '5'
+	mov [0xb8000], byte '4'
 	mov [0xb8002], byte ' '
 	jmp $
 	iretq
 isr6:
-	mov [0xb8000], byte '6'
+	mov [0xb8000], byte '5'
 	mov [0xb8002], byte ' '
 	jmp $
 	iretq
 isr7:
-	mov [0xb8000], byte '7'
+	mov [0xb8000], byte '6'
 	mov [0xb8002], byte ' '
 	jmp $
 	iretq
 isr8:
-	mov [0xb8000], byte '8'
+	mov [0xb8000], byte '7'
 	mov [0xb8002], byte ' '
 	jmp $
 	iretq
 isr9:
-	mov [0xb8000], byte '9'
+	mov [0xb8000], byte '8'
 	mov [0xb8002], byte ' '
 	jmp $
 	iretq
 isr10:
-	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '0'
+	mov [0xb8000], byte '9'
+	mov [0xb8002], byte ' '
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr11:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '1'
+	mov [0xb8002], byte '0'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr12:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '2'
+	mov [0xb8002], byte '1'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr13:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '3'
+	mov [0xb8002], byte '2'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr14:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '4'
+	mov [0xb8002], byte '3'
 	mov [0xb8004], byte ' '
 	pop rax
 	jmp $
 	iretq
 isr15:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '5'
+	mov [0xb8002], byte '4'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr16:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '6'
+	mov [0xb8002], byte '5'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr17:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '7'
+	mov [0xb8002], byte '6'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr18:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '8'
+	mov [0xb8002], byte '7'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr19:
 	mov [0xb8000], byte '1'
-	mov [0xb8002], byte '9'
+	mov [0xb8002], byte '8'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq
 isr20:
-	mov [0xb8000], byte '2'
-	mov [0xb8002], byte '0'
+	mov [0xb8000], byte '1'
+	mov [0xb8002], byte '9'
 	mov [0xb8004], byte ' '
 	jmp $
 	iretq

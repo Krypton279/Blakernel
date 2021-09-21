@@ -19,7 +19,7 @@ struct MemoryRegionEntry {
 	uint_32 Attr_Types;
 };
 
-uint_64 *MemoryMap = (uint_64 *) 0x600000;
+uint_64 *MemoryMap = (uint_64 *) 0x1fc000;
 
 int ValidMemoryIndex[10];
 struct MemoryRegionEntry* MemRegs = (struct MemoryRegionEntry *) 0x500;

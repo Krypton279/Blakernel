@@ -20,6 +20,9 @@ int _start()
     InitiateMemoryMap();
     //heapMemory is the Heap in form of Struct which conains every information abt Heap
     PrintStringXY((IntegerToString(heapMemory.Length)),50,0,14);
+    PrintStringXY((IntegerToString(heapMemory.Address)),50,0,15);
+    PrintStringXY((IntegerToString(heapMemory.MemoryType)),50,0,16);
+    PrintStringXY((IntegerToString(heapMemory.Attr_Types)),50,0,17);
     //Enabled Cursor and Remember Text Mode Stays in 80x25
     while(1);
 }
